@@ -3,11 +3,11 @@
 #include <ctime>
 #include "GameState.hpp"
 #include "Entities.hpp"
+#include "Settings.hpp"
 #include <chrono>
 #include <unistd.h>
 
 using namespace std;
-
 
 long long int getCurrentTimeMs() {
     using namespace std::chrono;
@@ -24,7 +24,7 @@ int main()
 	noecho();
 	curs_set(0);
 	
-	win = newwin(LINES, COLS, 0, 0);
+	win = newwin(WINDOW_HEIGHT, WINDOW_WIDTH, LINES/2 - WINDOW_HEIGHT/2, COLS/2 - WINDOW_WIDTH/2);
 	keypad(win, TRUE);
 	nodelay(win, TRUE);
 	notimeout(win, TRUE);
@@ -39,6 +39,7 @@ int main()
 		state.pressed = wgetch(win);
 		state.time = getCurrentTimeMs();
 		werase(win);
+		box(win, 0, 0);
 		for (Entity* entity : state.entities)
 		{
 			entity->Update(state);
@@ -47,6 +48,7 @@ int main()
 		wrefresh(win);
 	}
 
+	delwin(win);
 	endwin();
 	return 0;
 }
