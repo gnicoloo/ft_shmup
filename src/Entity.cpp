@@ -1,8 +1,14 @@
 #include "Entity.hpp"
 
-Entity::Entity(Vector2 position)
+Entity::Entity(Vector2 position, char *graphics)
 {
 	this->position = position;
+	this->active_graphics = graphics;
+}
+
+void Entity::Update(GameState &state)
+{
+	//state.collision_map[] ima do this later
 }
 
 bool Entity::IsInsideBoundingBox(Vector2 point)

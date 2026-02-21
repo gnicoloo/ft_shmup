@@ -10,9 +10,12 @@ class Entity : public Updatable
 	protected:
 		Vector2 position;
 		Rect bounding_box;
+		char *active_graphics;
+
 	public:
-		Entity(Vector2 position);
+		Entity(Vector2 position, char *graphics);
 		void virtual Render(WINDOW* window) = 0;
+		void Update(GameState& state) override;
 		bool IsInsideBoundingBox(Vector2 point);
 };
 
@@ -22,7 +25,7 @@ class Living : public Entity
 	int health;
 	
 	public:
-	Living(Vector2 position) : Entity(position) {}
+	Living(Vector2 position, char *graphics) : Entity(position, graphics) {}
 	bool isDead() {return health <= 0;}
 };
 

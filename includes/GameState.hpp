@@ -2,6 +2,8 @@
 #define GAMESTATE_HPP
 
 #include <list>
+#include "Settings.hpp"
+
 class Entity;
 
 struct GameState
@@ -11,6 +13,7 @@ struct GameState
 	int level;
 	int pressed;
 	std::list<Entity*> entities;
+	Entity* collision_map[WINDOW_WIDTH][WINDOW_HEIGHT];
 
 	bool isKeyPressed(int key){return pressed==key;}
 }; 

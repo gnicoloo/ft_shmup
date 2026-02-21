@@ -35,7 +35,7 @@ int main()
 	state.entities.push_front(player);
 
 	while (true)
-	{		
+	{
 		state.pressed = wgetch(win);
 		state.time = getCurrentTimeMs();
 		werase(win);
