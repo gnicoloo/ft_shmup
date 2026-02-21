@@ -4,6 +4,9 @@
 #include "Updatable.hpp"
 #include "Data_Structs.hpp"
 #include "curses.h"
+#include <string.h>
+
+#define SECONDS(clock) clock / 1000000000.0f
 
 class Entity : public Updatable
 {
@@ -11,12 +14,17 @@ class Entity : public Updatable
 		Vector2 position;
 		Rect bounding_box;
 		char *active_graphics;
+		bool to_remove = false;
 
 	public:
+		long long int clock = 0;
 		Entity(Vector2 position, char *graphics);
-		void virtual Render(WINDOW* window) = 0;
-		void Update(GameState& state) override;
+		void virtual Render(WINDOW* window);
+		void virtual Update(GameState& state) override;
+		void BakeCollisionMap(GameState& state);
 		bool IsInsideBoundingBox(Vector2 point);
+		bool IsToRemove() {return to_remove;}
+		Entity* GetEntityInCollisionMap(GameState &state);
 };
 
 class Living : public Entity

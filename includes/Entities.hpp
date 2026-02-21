@@ -2,22 +2,24 @@
 #define ENTITIES_HPP
 
 #include "Entity.hpp"
-#include <string>
-#include <tcl8.6/tcl-private/compat/string.h>
+#include <string.h>
 
 class Player : public Living
 {
+	private:
+	void Shoot(GameState& state);
+
 	public:
 	Player(Vector2 position) : Living(position, strdup(")--[^]--(")) {}
-	void Render(WINDOW* window) override;
 	void Update(GameState& state) override;
 };
 
 class BaseEnemy : public Living
 {
 	public:
-	void Render(WINDOW* window) override;
+	BaseEnemy(Vector2 position) : Living(position, strdup(" _\n/O\\\n^ ^")) {}
 	void Update(GameState& state) override;
+	void Destroy(GameState& state);
 }; 
 
 class Bullet : public Entity
@@ -26,8 +28,10 @@ class Bullet : public Entity
 	Vector2 direction;
 
 	public:
-	explicit Bullet(Vector2 direction);
-	void Render(WINDOW* window) override;
+	explicit Bullet(Vector2 position, Vector2 direction) : Entity(position, strdup("|"))
+	{
+		this->direction = direction;
+	}
 	void Update(GameState& state) override;
 };
 #endif

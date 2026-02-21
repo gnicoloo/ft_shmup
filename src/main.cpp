@@ -9,9 +9,8 @@
 
 using namespace std;
 
-long long int getCurrentTimeMs() {
-    using namespace std::chrono;
-    return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+long long int getCurrentTime() {
+    return std::chrono::steady_clock().now().time_since_epoch().count();
 }
 
 int main()
@@ -31,20 +30,40 @@ int main()
 	wrefresh(win);
 
 	GameState state = {};
-	Player *player = new Player({WINDOW_WIDTH / 2 - 1, WINDOW_HEIGHT-2});
-	state.entities.push_front(player);
+	state.time = getCurrentTime();
+	state.entities.push_front(new Player({WINDOW_WIDTH / 2 - 1, WINDOW_HEIGHT-2}));
+	state.entities.push_front(new BaseEnemy({WINDOW_WIDTH / 2 - 1, 5}));
 
 	while (true)
 	{
 		state.pressed = wgetch(win);
-		state.time = getCurrentTimeMs();
+		state.deltaTime = getCurrentTime() - state.time;
+		state.time = getCurrentTime();
 		werase(win);
 		box(win, 0, 0);
+
+		state.entities.splice(state.entities.begin(), state.spawn_queue);
+		state.spawn_queue.clear();
+		
+		for (Entity* entity : state.entities)
+			entity->BakeCollisionMap(state);
+
 		for (Entity* entity : state.entities)
 		{
 			entity->Update(state);
 			entity->Render(win);
 		}
+		memset(state.collision_map, 0, sizeof(state.collision_map));
+		state.entities.remove_if([](Entity* entity) 
+		{
+			if (entity->IsToRemove())
+			{
+				delete entity;
+				return true;
+			}
+			return false;
+		});
+
 		wrefresh(win);
 	}
 

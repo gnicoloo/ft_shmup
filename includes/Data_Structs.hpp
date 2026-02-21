@@ -1,8 +1,6 @@
 #ifndef DATA_STRUCTS_HPP
 #define DATA_STRUCTS_HPP
 
-#include "Updatable.hpp"
-
 struct Vector2
 {
 	int x = 0;
@@ -14,6 +12,11 @@ struct Vector2
 	}
 
 	Vector2() = default;
+
+	inline Vector2 operator+(Vector2 other)
+	{
+		return {x + other.x, y + other.y};
+	}  
 };
 
 struct Rect
