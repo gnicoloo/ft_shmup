@@ -227,3 +227,74 @@
 //     endwin();
 //     return 0;
 // }
+
+
+
+
+//                    +-----------------------+
+//                    |      GameEntity       |  (base class)
+//                    +-----------------------+
+//                    | - x, y                |
+//                    | - w, h                |
+//                    | - alive               |
+//                    | - sprite (matrix)     |
+//                    +-----------------------+
+//                    | + update() = 0        |
+//                    | + draw(WINDOW*)       |
+//                    | + isAlive()           |
+//                    | + kill()              |
+//                    +-----------------------+
+//                              ▲
+//           ┌──────────────────┼──────────────────┐
+//           │                  │                  │
+// +----------------+  +----------------+  +----------------+
+// |     Player     |  |     Enemy      |  |     Bullet     |
+// +----------------+  +----------------+  +----------------+
+// | - lives        |  | - speed        |  | - dy          |
+// | - score        |  |                |  |                |
+// +----------------+  +----------------+  +----------------+
+// | + move(dx,dy)  |  | + update()     |  | + update()     |
+// | + shoot()      |  |                |  |                |
+// | + update()     |  |                |  |                |
+// +----------------+  +----------------+  +----------------+
+
+//                        +----------------+
+//                        |      Game      |
+//                        +----------------+
+//                        | - hud: WINDOW* |
+//                        | - gameWin: WINDOW* |
+//                        | - Player       |
+//                        | - vector<Enemy>|
+//                        | - vector<Bullet>|
+//                        | - running: bool|
+//                        | - frame        |
+//                        +----------------+
+//                        | + run()        |
+//                        | + handleInput()|
+//                        | + update()     |
+//                        | + render()     |
+//                        | + checkCollisions()|
+//                        | + init()       |
+//                        | + shutdown()   |
+//                        +----------------+
+
+
+
+// MAIN
+//  └── Game
+//       ├── Init ncurses + finestre
+//       ├── Loop principale
+//       │    ├── Input
+//       │    │     └── muovi player, spara, quit
+//       │    ├── Update
+//       │    │     ├── muovi nemici
+//       │    │     ├── muovi proiettili
+//       │    │     └── spawn nemici/proiettili
+//       │    ├── Collision
+//       │    │     ├── player-enemy
+//       │    │     └── bullet-enemy
+//       │    └── Render
+//       │          ├── HUD
+//       │          └── GAME AREA (draw player, nemici, proiettili)
+//       └── Shutdown
+//              └── delwin() + endwin()
