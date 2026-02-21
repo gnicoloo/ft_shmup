@@ -6,7 +6,7 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:19:33 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 14:56:48 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 16:19:42 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 
 // TIME
-unsigned long	get_time(void);
+long long int 	get_time(void);
 
 
 // CLEANUP

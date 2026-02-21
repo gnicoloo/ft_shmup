@@ -6,7 +6,7 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:54:41 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 15:07:09 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 17:19:05 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ void HUD::render(GameState& gameState)
     int score = gameState.score;
     int lives = gameState.lives;
     int frame = gameState.frame;
+    long long int time = (( get_time() - gameState.startTime) / 1000); // tempo in secondi
 
  // Colori HUD
     wattron(win, COLOR_PAIR(4)); // HUD info
     // Score e frame
-    mvwprintw(win, 1, 2, "Score: %d   ||  Frame: %d    ||  Lives: ", score, frame);
+    mvwprintw(win, 1, 2, "Score: %d   ||  Frame: %d    ||  Time: %lld   || lives: ", score, frame, time);
     wattron(win, COLOR_PAIR(2));
     for(int i = 0; i < lives; i++)
     {
@@ -54,4 +55,14 @@ void HUD::render(GameState& gameState)
     wattroff(win, COLOR_PAIR(1));
     wattroff(win, COLOR_PAIR(4));
     wrefresh(win);
+}
+
+
+void HUD::update(GameState &gameState)
+{
+    // In futuro, potresti voler aggiornare dinamicamente le informazioni dell'HUD qui
+    werase(getWindow());
+    box(getWindow(), 0, 0);
+    render(gameState);
+    wrefresh(getWindow());
 }

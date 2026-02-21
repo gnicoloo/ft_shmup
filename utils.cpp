@@ -6,14 +6,13 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:16:41 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 14:56:41 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 16:19:33 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.hpp"
 
-
-unsigned long	get_time(void)
+long long int 	get_time(void)
 {
 	struct timeval	tv;
 

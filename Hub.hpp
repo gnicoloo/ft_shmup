@@ -6,7 +6,7 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:53:04 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 14:34:00 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 17:19:14 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ class HUD
 
         // Aggiorna le informazioni sullo schermo
         void render(GameState& gameState);
+
+        void update(GameState &gameState);
 
         // Ritorna la finestra ncurses
         // dovro usare questa funzione per disegnare il player, i nemici e i proiettili sulla finestra del gioco, perche la finestra del gioco e diversa da quella dell'hud, quindi devo passare la finestra del gioco alla funzione drawEntity() per disegnare le entita sulla finestra del gioco, e per fare questo devo avere una funzione che mi ritorna la finestra del gioco, che in questo caso e la finestra dell'hud, perche l'hud e la finestra principale del gioco, quindi posso usare la funzione getWindow() per ottenere la finestra dell'hud e passare quella alla funzione drawEntity() per disegnare le entita sulla finestra dell'hud, che in questo caso e anche la finestra del gioco.

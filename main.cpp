@@ -349,12 +349,13 @@ int main() {
 
     init_screen();
 
+    
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
     // Creazione finestre
     // parameteri: altezza, larghezza, starty, startx
     HUD hub(max_x, 3, 0, 0);
-    WINDOW* gameWin = newwin(max_y - 3, max_x, 3, 0);
+    
 
     // Sprite player
 
@@ -386,7 +387,7 @@ int main() {
     std::vector<Entity> enemies;
 
     // Variabili di gioco da spostare in una classe Game con metodi per update, render, input, collisioni
-    GameState gameState;
+    GameState gameState(get_time(), max_y, max_x);
 
     while(gameState.running)
     {
@@ -403,7 +404,7 @@ int main() {
                 break;
             case 27: // exit con esc
                 {
-                    exit_cleanup(gameWin, hub.getWindow());
+                    exit_cleanup(gameState.gameWin, hub.getWindow());
                     return 0;
                 }
                 // case ' ': // spara
@@ -414,18 +415,22 @@ int main() {
         }
 
         // spawn nemici ogni 30 frame
-        if(gameState.frame % 30 == 0) {
+        if(gameState.frame % 30 == 0)
+        {
             int spawnX = rand() % (max_x - 3) + 1;
             enemies.push_back(Entity(spawnX, 1, enemySprite));
         }
 
         // muovi nemici
         // pure questo deve avere una gravita diversa per avere un movimento piu fluido, ora i nemici si muovono di 1 cella ogni 30 frame, ma con una gravita diversa si muovono di 1 cella ogni 10 frame, o anche di 0.5 celle ogni 10 frame, per avere un movimento piu fluido e meno a scatti
-        for(std::vector<Entity>::iterator it = enemies.begin();
-            it != enemies.end();
-            ++it)
-        {
-            it->y++;
+        if (gameState.frame % 10 == 0)
+        {    
+            for(std::vector<Entity>::iterator it = enemies.begin();
+                it != enemies.end();
+                ++it)
+            {
+                it->y++;
+            }
         }
 
         // rimuovi nemici fuori schermo
@@ -461,41 +466,32 @@ int main() {
                 ++it;
         }
 
-        // Render hub
-        // werase: pulisce la finestra
-        werase(hub.getWindow());
-        box(hub.getWindow(), 0, 0);
-        hub.render(gameState);
-        wrefresh(hub.getWindow());
-        // wrefresh: aggiorna la finestra hub
-
-
+        // Render hub end update info
+        hub.update(gameState);
         // Render game
         //perche ?
         // perche se non pulisco la finestra, i nemici lasciano una scia quando si muovono, e il player lascia una scia quando si muove
         // box disegna un bordo attorno alla finestra, se non lo ridisegno ad ogni frame, il bordo scompare
-        werase(gameWin);
-        box(gameWin, 0, 0);
-
-
+        werase(gameState.gameWin);
+        box(gameState.gameWin, 0, 0);
         // da mofificare per disegnare sprite piu grandi, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
-        drawEntity(gameWin, player);
+        drawEntity(gameState.gameWin, player);
 
             // disegnare i nemici, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
-        // drawEntity(gameWin, bullet);
+        // drawEntity(gameState.gameWin, bullet);
         for(std::vector<Entity>::iterator it = enemies.begin();
             it != enemies.end();
             ++it)
         {
-            drawEntity(gameWin, *it);
+            drawEntity(gameState.gameWin, *it);
         }
         // aggiorna la finestra gameWin
-        wrefresh(gameWin);
+        wrefresh(gameState.gameWin);
 
         usleep(50000); // ~20 FPS
         gameState.frame++;
     }
     // pulizia ncurses
-    exit_cleanup( gameWin, hub.getWindow());
+    exit_cleanup( gameState.gameWin, hub.getWindow());
     return 0;
 }
