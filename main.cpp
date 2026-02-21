@@ -18,10 +18,7 @@
 //     Enemy(int x_, int y_) : Entity(x_, y_, 'V') {}
 // };
 
-// struct Bullet : public Entity {
-//     int dy; // direzione y
-//     Bullet(int x_, int y_, int dy_) : Entity(x_, y_, '|'), dy(dy_) {}
-// };
+
 
 // int main() {
 //     initscr();
@@ -314,22 +311,14 @@
 
 #include "Library.hpp"
 
-struct Entity {
-    int x, y;
-    int w, h;
-    std::vector<std::vector<char> > sprite;
-    bool alive;
-
-    Entity(int x_, int y_, std::vector<std::vector<char> > s)
-        : x(x_), y(y_), sprite(s), alive(true)
-    {
-        h = sprite.size();
-        w = (h > 0) ? sprite[0].size() : 0;
-    }
+struct Bullet : public Entity {
+    int dy; // direzione y
+    Bullet(int x_, int y_, int dy_, std::vector<std::vector<char> > s) : Entity(x_, y_, s), dy(dy_) {}
 };
 
 // Disegna una matrice su finestra
-void drawEntity(WINDOW* win, Entity& e) {
+void drawEntity(WINDOW* win, Entity& e)
+{
     for(int i = 0; i < e.h; i++)
         for(int j = 0; j < e.w; j++)
             if(e.sprite[i][j] != ' ')
@@ -337,7 +326,8 @@ void drawEntity(WINDOW* win, Entity& e) {
 }
 
 // Controllo collisione rettangolare
-bool checkCollision(Entity& a, Entity& b) {
+bool checkCollision(Entity& a, Entity& b)
+{
     return !(a.x + a.w <= b.x || b.x + b.w <= a.x ||
              a.y + a.h <= b.y || b.y + b.h <= a.y);
 }
@@ -349,7 +339,7 @@ int main() {
 
     init_screen();
 
-    
+
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
     // Creazione finestre
@@ -380,11 +370,18 @@ int main() {
     enemySprite[1].push_back('V');
     enemySprite[1].push_back('V');
 
+    // Sprite bullet
+    std::vector<std::vector<char> > bulletSprite;
+    bulletSprite.push_back(std::vector<char>());
+    bulletSprite[0].push_back('|');
+    
+
     Entity player(max_x / 2, max_y - 6, playerSprite);
     
 
     //  forse sara una lista
     std::vector<Entity> enemies;
+    std::vector<Bullet> bullets;
 
     // Variabili di gioco da spostare in una classe Game con metodi per update, render, input, collisioni
     GameState gameState(get_time(), max_y, max_x);
@@ -407,9 +404,14 @@ int main() {
                     exit_cleanup(gameState.gameWin, hub.getWindow());
                     return 0;
                 }
-                // case ' ': // spara
-                //     // bullets.push_back(Entity(player.x + player.w/2, player.y - 1, bulletSprite));
-                //     break;
+            case ' ': // spara
+                {
+                    int bulletX = player.x + player.w / 2;
+                    int bulletY = player.y - 1;
+
+                    bullets.push_back(Bullet(bulletX, bulletY, -1, bulletSprite));
+                }
+                break;
 
                 // quit con q, ma magari meglio con ESC o qualcosa di piu standard, e magari anche con una schermata di conferma "Are you sure? Y/N"
         }
@@ -420,10 +422,26 @@ int main() {
             int spawnX = rand() % (max_x - 3) + 1;
             enemies.push_back(Entity(spawnX, 1, enemySprite));
         }
-
+        // muovi bullet
+        for(std::vector<Bullet>::iterator it = bullets.begin();
+            it != bullets.end();
+            ++it)
+        {
+            it->y += it->dy;
+        }
+        
+        // rimuovi bullet fuori schermo
+        for(std::vector<Bullet>::iterator it = bullets.begin();
+            it != bullets.end(); )
+        {
+            if(it->y <= 3)  // sopra del bordo della finestra di gioco
+                it = bullets.erase(it);
+            else
+                ++it;
+        }
         // muovi nemici
         // pure questo deve avere una gravita diversa per avere un movimento piu fluido, ora i nemici si muovono di 1 cella ogni 30 frame, ma con una gravita diversa si muovono di 1 cella ogni 10 frame, o anche di 0.5 celle ogni 10 frame, per avere un movimento piu fluido e meno a scatti
-        if (gameState.frame % 10 == 0)
+        if (gameState.frame % 20 == 0)
         {    
             for(std::vector<Entity>::iterator it = enemies.begin();
                 it != enemies.end();
@@ -433,7 +451,31 @@ int main() {
             }
         }
 
-        // rimuovi nemici fuori schermo
+        // rimuovi nembullet-enemy
+        for(std::vector<Bullet>::iterator bitIt = bullets.begin();
+            bitIt != bullets.end(); )
+        {
+            bool bulletHit = false;
+            for(std::vector<Entity>::iterator eitIt = enemies.begin();
+                eitIt != enemies.end(); )
+            {
+                if(checkCollision(*bitIt, *eitIt)) {
+                    bulletHit = true;
+                    eitIt->alive = false;
+                    gameState.score += 10;
+                    eitIt = enemies.erase(eitIt);
+                } else {
+                    ++eitIt;
+                }
+            }
+            if(bulletHit) {
+                bitIt = bullets.erase(bitIt);
+            } else {
+                ++bitIt;
+            }
+        }
+
+        // collisione ici fuori schermo
         for(std::vector<Entity>::iterator it = enemies.begin();
             it != enemies.end(); )
         {
@@ -475,16 +517,27 @@ int main() {
         werase(gameState.gameWin);
         box(gameState.gameWin, 0, 0);
         // da mofificare per disegnare sprite piu grandi, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
-        drawEntity(gameState.gameWin, player);
 
-            // disegnare i nemici, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
-        // drawEntity(gameState.gameWin, bullet);
-        for(std::vector<Entity>::iterator it = enemies.begin();
-            it != enemies.end();
+        // prepara 
+                        drawEntity(gameState.gameWin, player);
+
+                            // disegnare i nemici, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
+                        // drawEntity(gameState.gameWin, bullet);
+                        for(std::vector<Entity>::iterator it = enemies.begin();
+                            it != enemies.end();
+                            ++it)
+                        {
+                            drawEntity(gameState.gameWin, *it);
+                        }
+
+        // disegna i proiettili
+        for(std::vector<Bullet>::iterator it = bullets.begin();
+            it != bullets.end();
             ++it)
         {
             drawEntity(gameState.gameWin, *it);
         }
+        
         // aggiorna la finestra gameWin
         wrefresh(gameState.gameWin);
 

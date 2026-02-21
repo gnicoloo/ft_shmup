@@ -6,7 +6,7 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:16:41 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 16:19:33 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 17:35:44 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ void init_screen()
     curs_set(0);
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
+}
+
+void print_entity(Entity& e, WINDOW* win)
+{
+    for(int i = 0; i < e.h; i++)
+        for(int j = 0; j < e.w; j++)
+            if(e.sprite[i][j] != ' ')
+                mvwaddch(win, e.y + i, e.x + j, e.sprite[i][j]);
 }
