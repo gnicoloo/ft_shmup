@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Library.hpp                                        :+:      :+:    :+:   */
+/*   GameState.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 12:17:10 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 14:35:01 by gnicolo          ###   ########.fr       */
+/*   Created: 2026/02/21 14:31:09 by gnicolo           #+#    #+#             */
+/*   Updated: 2026/02/21 14:39:08 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBRARY_HPP
-#define LIBRARY_HPP
+#ifndef GAMESTATE_HPP
+#define GAMESTATE_HPP
+
+#include "Library.hpp"
+
+class GameState
+{
+
+    public:
+            int score;
+            int lives;
+            bool running;
+            int frame;
+        GameState(): score(0), lives(3), running(true), frame(0) {};
+        ~GameState();
+
+        // check collisioni
+};
 
 
-
-
-#include <iostream>
-#include <vector>
-#include <ncurses.h>
-#include <unistd.h> // usleep
-#include <cstdlib>  // rand
-#include "utils.hpp"
-#include <time.h>
-#include <sys/time.h>
-#include "Hub.hpp"
-#include "GameState.hpp"
 
 #endif

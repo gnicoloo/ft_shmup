@@ -1,9 +1,9 @@
 NAME = ft_shmup
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror 
 
-SRC = main.cpp Hub.cpp utils.cpp
+SRC = main.cpp Hub.cpp utils.cpp GameState.cpp 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -14,6 +14,12 @@ $(NAME): $(OBJ)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+val:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=$(CURDIR)/supp_extra.supp ./$(NAME)
+
+val-gen:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --gen-suppressions=all ./$(NAME) > valgrind_output.txt
+
 clean:
 	rm -f $(OBJ)
 
@@ -22,4 +28,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re  val

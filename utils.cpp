@@ -6,7 +6,7 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:16:41 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 13:02:27 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 14:56:41 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ unsigned long	get_time(void)
 }
 
 
-void exit_cleanup(WINDOW* gameWin)
+void exit_cleanup(WINDOW* gameWin, WINDOW* hudWin)
 {
     delwin(gameWin);
+    delwin(hudWin);
     endwin();
 }
+
 
 void init_screen()
 {

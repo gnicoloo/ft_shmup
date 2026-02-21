@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Library.hpp                                        :+:      :+:    :+:   */
+/*   GameState.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 12:17:10 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 14:35:01 by gnicolo          ###   ########.fr       */
+/*   Created: 2026/02/21 14:40:00 by gnicolo           #+#    #+#             */
+/*   Updated: 2026/02/21 14:38:03 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBRARY_HPP
-#define LIBRARY_HPP
-
-
-
-
-#include <iostream>
-#include <vector>
-#include <ncurses.h>
-#include <unistd.h> // usleep
-#include <cstdlib>  // rand
-#include "utils.hpp"
-#include <time.h>
-#include <sys/time.h>
-#include "Hub.hpp"
 #include "GameState.hpp"
 
-#endif
+GameState::~GameState() {}
+

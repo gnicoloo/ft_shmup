@@ -353,7 +353,7 @@ int main() {
     getmaxyx(stdscr, max_y, max_x);
     // Creazione finestre
     // parameteri: altezza, larghezza, starty, startx
-    HUD hud(max_x, 3, 0, 0);
+    HUD hub(max_x, 3, 0, 0);
     WINDOW* gameWin = newwin(max_y - 3, max_x, 3, 0);
 
     // Sprite player
@@ -386,12 +386,10 @@ int main() {
     std::vector<Entity> enemies;
 
     // Variabili di gioco da spostare in una classe Game con metodi per update, render, input, collisioni
-    int score = 0;
-    int lives = 3;
-    bool running = true;
-    int frame = 0;
+    GameState gameState;
 
-    while(running) {
+    while(gameState.running)
+    {
 
         int ch = getch();
         switch(ch) {
@@ -403,9 +401,11 @@ int main() {
                 if(player.x + player.w < max_x - 1)
                     player.x++;
                 break;
-            case 'q':
-                running = false;
-                break;
+            case 27: // exit con esc
+                {
+                    exit_cleanup(gameWin, hub.getWindow());
+                    return 0;
+                }
                 // case ' ': // spara
                 //     // bullets.push_back(Entity(player.x + player.w/2, player.y - 1, bulletSprite));
                 //     break;
@@ -414,7 +414,7 @@ int main() {
         }
 
         // spawn nemici ogni 30 frame
-        if(frame % 30 == 0) {
+        if(gameState.frame % 30 == 0) {
             int spawnX = rand() % (max_x - 3) + 1;
             enemies.push_back(Entity(spawnX, 1, enemySprite));
         }
@@ -444,10 +444,10 @@ int main() {
             ++it)
         {
             if(checkCollision(player, *it)) {
-                lives--;
+                gameState.lives--;
                 it->alive = false;
-                if(lives <= 0)
-                    running = false;
+                if(gameState.lives <= 0)
+                    gameState.running = false;
             }
         }
 
@@ -461,19 +461,13 @@ int main() {
                 ++it;
         }
 
-        // Render HUD
+        // Render hub
         // werase: pulisce la finestra
-        werase(hud.getWindow());
-        // box: disegna un bordo attorno alla finestra
-        box(hud.getWindow(), 0, 0);
-        // mvwprintw: stampa testo nella finestra hud alla posizione (1,2)
-
-
-        // renderizza le informazioni di gioco (score, vite, frame) nella finestra hud
-        // hub.cpp
-        hud.render(score, lives, frame);
-        // wrefresh: aggiorna la finestra hud
-        wrefresh(hud.getWindow());
+        werase(hub.getWindow());
+        box(hub.getWindow(), 0, 0);
+        hub.render(gameState);
+        wrefresh(hub.getWindow());
+        // wrefresh: aggiorna la finestra hub
 
 
         // Render game
@@ -499,9 +493,9 @@ int main() {
         wrefresh(gameWin);
 
         usleep(50000); // ~20 FPS
-        frame++;
+        gameState.frame++;
     }
     // pulizia ncurses
-    exit_cleanup( gameWin);
+    exit_cleanup( gameWin, hub.getWindow());
     return 0;
 }
