@@ -263,9 +263,11 @@
 //                        +----------------+
 //                        | - hud: WINDOW* |
 //                        | - gameWin: WINDOW* |
-//                        | - Player       |
-//                        | - vector<Enemy>|
-//                        | - vector<Bullet>|
+                                                                    //    | - Player       |
+                                                                    //    | - vector<Enemy>|
+                                                                    //    | - vector<Bullet>|
+//                              che sara un vector di puntatori a GameEntity
+                //         vect
 //                        | - running: bool|
 //                        | - frame        |
 //                        +----------------+
@@ -298,3 +300,215 @@
 //       │          └── GAME AREA (draw player, nemici, proiettili)
 //       └── Shutdown
 //              └── delwin() + endwin()
+
+
+
+
+
+#include <ncurses.h>
+#include <vector>
+#include <unistd.h>
+#include <cstdlib>
+#include <algorithm>
+#include <ctime>
+
+#include "Library.hpp"
+
+struct Entity {
+    int x, y;
+    int w, h;
+    std::vector<std::vector<char> > sprite;
+    bool alive;
+
+    Entity(int x_, int y_, std::vector<std::vector<char> > s)
+        : x(x_), y(y_), sprite(s), alive(true)
+    {
+        h = sprite.size();
+        w = (h > 0) ? sprite[0].size() : 0;
+    }
+};
+
+// Disegna una matrice su finestra
+void drawEntity(WINDOW* win, Entity& e) {
+    for(int i = 0; i < e.h; i++)
+        for(int j = 0; j < e.w; j++)
+            if(e.sprite[i][j] != ' ')
+                mvwaddch(win, e.y + i, e.x + j, e.sprite[i][j]);
+}
+
+// Controllo collisione rettangolare
+bool checkCollision(Entity& a, Entity& b) {
+    return !(a.x + a.w <= b.x || b.x + b.w <= a.x ||
+             a.y + a.h <= b.y || b.y + b.h <= a.y);
+}
+
+int main() {
+    srand(time(NULL));
+
+    // // Inizializzazione ncurses
+    initscr();
+
+    // Configurazione ncurses
+    // - noecho: non mostrare i caratteri digitati
+    noecho();
+    // - cbreak: disabilita buffering, input immediato
+    cbreak();
+    // - curs_set(0): nascondi cursore
+    curs_set(0);
+    // - keypad: abilita input da tastiera (frecce)
+    keypad(stdscr, TRUE);
+    // - nodelay: getch() non blocca se non c'è input
+    nodelay(stdscr, TRUE);
+
+    int max_y, max_x;
+    getmaxyx(stdscr, max_y, max_x);
+
+    // Creazione finestre
+    // parameteri: altezza, larghezza, starty, startx
+    WINDOW* hud = newwin(3, max_x, 0, 0);
+    WINDOW* gameWin = newwin(max_y - 3, max_x, 3, 0);
+
+    // Sprite player
+
+    // questo sara un matrix block con define di grande variabile con grandezze raw,length e poi push_back di ogni riga, cosi da poter fare sprite piu grandi
+    //con spazo tra i caratteri, e non solo 1 char per cella
+    std::vector<std::vector<char> > playerSprite;
+    playerSprite.push_back(std::vector<char>());
+    playerSprite[0].push_back('/');
+    playerSprite[0].push_back('\\');
+
+    playerSprite.push_back(std::vector<char>());
+    playerSprite[1].push_back('\\');
+    playerSprite[1].push_back('/');
+
+    // Sprite enemy
+    std::vector<std::vector<char> > enemySprite;
+    enemySprite.push_back(std::vector<char>());
+    enemySprite[0].push_back('V');
+    enemySprite[0].push_back('V');
+
+    enemySprite.push_back(std::vector<char>());
+    enemySprite[1].push_back('V');
+    enemySprite[1].push_back('V');
+
+    Entity player(max_x / 2, max_y - 6, playerSprite);
+    
+
+    //  forse sara una lista
+    std::vector<Entity> enemies;
+
+    // Variabili di gioco da spostare in una classe Game con metodi per update, render, input, collisioni
+    int score = 0;
+    int lives = 3;
+    bool running = true;
+    int frame = 0;
+
+    while(running) {
+
+        int ch = getch();
+        switch(ch) {
+            case KEY_LEFT:
+                if(player.x > 1)
+                    player.x--;
+                break;
+            case KEY_RIGHT:
+                if(player.x + player.w < max_x - 1)
+                    player.x++;
+                break;
+            case 'q':
+                running = false;
+                break;
+                // case ' ': // spara
+                //     // bullets.push_back(Entity(player.x + player.w/2, player.y - 1, bulletSprite));
+                //     break;
+
+                // quit con q, ma magari meglio con ESC o qualcosa di piu standard, e magari anche con una schermata di conferma "Are you sure? Y/N"
+        }
+
+        // spawn nemici ogni 30 frame
+        if(frame % 30 == 0) {
+            int spawnX = rand() % (max_x - 3) + 1;
+            enemies.push_back(Entity(spawnX, 1, enemySprite));
+        }
+
+        // muovi nemici
+        for(std::vector<Entity>::iterator it = enemies.begin();
+            it != enemies.end();
+            ++it)
+        {
+            it->y++;
+        }
+
+        // rimuovi nemici fuori schermo
+        for(std::vector<Entity>::iterator it = enemies.begin();
+            it != enemies.end(); )
+        {
+            if(it->y >= max_y - 3)
+                it = enemies.erase(it);
+            else
+                ++it;
+        }
+
+        // collisione player-enemy
+        for(std::vector<Entity>::iterator it = enemies.begin();
+            it != enemies.end();
+            ++it)
+        {
+            if(checkCollision(player, *it)) {
+                lives--;
+                it->alive = false;
+                if(lives <= 0)
+                    running = false;
+            }
+        }
+
+        // rimuovi nemici morti
+        for(std::vector<Entity>::iterator it = enemies.begin();
+            it != enemies.end(); )
+        {
+            if(!it->alive)
+                it = enemies.erase(it);
+            else
+                ++it;
+        }
+
+        // Render HUD
+        // werase: pulisce la finestra
+        werase(hud);
+        // box: disegna un bordo attorno alla finestra
+        box(hud, 0, 0);
+        // mvwprintw: stampa testo nella finestra hud alla posizione (1,2)
+        mvwprintw(hud, 1, 2, "Score: %d  Lives: %d  Frame: %d", score, lives, frame);
+        // wrefresh: aggiorna la finestra hud
+        wrefresh(hud);
+
+
+        // Render game
+        //perche ?
+        // perche se non pulisco la finestra, i nemici lasciano una scia quando si muovono, e il player lascia una scia quando si muove
+        // box disegna un bordo attorno alla finestra, se non lo ridisegno ad ogni frame, il bordo scompare
+        werase(gameWin);
+        box(gameWin, 0, 0);
+
+
+        // da mofificare per disegnare sprite piu grandi, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
+        drawEntity(gameWin, player);
+
+            // disegnare i nemici, ora disegna solo 1 char per cella, ma con sprite a matrice devo disegnare tutta la matrice
+        // drawEntity(gameWin, bullet);
+        for(std::vector<Entity>::iterator it = enemies.begin();
+            it != enemies.end();
+            ++it)
+        {
+            drawEntity(gameWin, *it);
+        }
+        // aggiorna la finestra gameWin
+        wrefresh(gameWin);
+
+        usleep(50000); // ~20 FPS
+        frame++;
+    }
+    // pulizia ncurses
+    exit_cleanup(hud, gameWin);
+    return 0;
+}
