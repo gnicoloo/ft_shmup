@@ -2,7 +2,7 @@
 
 void Player::Render(WINDOW* win)
 {
-	mvwprintw(win, this->position.y, this->position.x, "#");
+	mvwprintw(win, this->position.y, this->position.x - 9/2, ")--[^]--(");
 }
 // 260 left
 // 261 right

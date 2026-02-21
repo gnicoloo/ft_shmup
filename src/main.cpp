@@ -31,7 +31,7 @@ int main()
 	wrefresh(win);
 
 	GameState state = {};
-	Player *player = new Player({0, 0});
+	Player *player = new Player({WINDOW_WIDTH / 2 - 1, WINDOW_HEIGHT-2});
 	state.entities.push_front(player);
 
 	while (true)
