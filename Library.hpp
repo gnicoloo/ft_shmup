@@ -6,7 +6,7 @@
 /*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 12:17:10 by gnicolo           #+#    #+#             */
-/*   Updated: 2026/02/21 12:20:01 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/21 12:54:38 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 #include "utils.hpp"
 #include <time.h>
 #include <sys/time.h>
+#include "Hub.hpp"
 
 #endif

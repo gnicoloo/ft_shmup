@@ -342,30 +342,18 @@ bool checkCollision(Entity& a, Entity& b) {
              a.y + a.h <= b.y || b.y + b.h <= a.y);
 }
 
+
+
 int main() {
-    srand(time(NULL));
 
-    // // Inizializzazione ncurses
-    initscr();
 
-    // Configurazione ncurses
-    // - noecho: non mostrare i caratteri digitati
-    noecho();
-    // - cbreak: disabilita buffering, input immediato
-    cbreak();
-    // - curs_set(0): nascondi cursore
-    curs_set(0);
-    // - keypad: abilita input da tastiera (frecce)
-    keypad(stdscr, TRUE);
-    // - nodelay: getch() non blocca se non c'è input
-    nodelay(stdscr, TRUE);
+    init_screen();
 
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
-
     // Creazione finestre
     // parameteri: altezza, larghezza, starty, startx
-    WINDOW* hud = newwin(3, max_x, 0, 0);
+    HUD hud(max_x, 3, 0, 0);
     WINDOW* gameWin = newwin(max_y - 3, max_x, 3, 0);
 
     // Sprite player
@@ -432,6 +420,7 @@ int main() {
         }
 
         // muovi nemici
+        // pure questo deve avere una gravita diversa per avere un movimento piu fluido, ora i nemici si muovono di 1 cella ogni 30 frame, ma con una gravita diversa si muovono di 1 cella ogni 10 frame, o anche di 0.5 celle ogni 10 frame, per avere un movimento piu fluido e meno a scatti
         for(std::vector<Entity>::iterator it = enemies.begin();
             it != enemies.end();
             ++it)
@@ -474,13 +463,17 @@ int main() {
 
         // Render HUD
         // werase: pulisce la finestra
-        werase(hud);
+        werase(hud.getWindow());
         // box: disegna un bordo attorno alla finestra
-        box(hud, 0, 0);
+        box(hud.getWindow(), 0, 0);
         // mvwprintw: stampa testo nella finestra hud alla posizione (1,2)
-        mvwprintw(hud, 1, 2, "Score: %d  Lives: %d  Frame: %d", score, lives, frame);
+
+
+        // renderizza le informazioni di gioco (score, vite, frame) nella finestra hud
+        // hub.cpp
+        hud.render(score, lives, frame);
         // wrefresh: aggiorna la finestra hud
-        wrefresh(hud);
+        wrefresh(hud.getWindow());
 
 
         // Render game
@@ -509,6 +502,6 @@ int main() {
         frame++;
     }
     // pulizia ncurses
-    exit_cleanup(hud, gameWin);
+    exit_cleanup( gameWin);
     return 0;
 }
