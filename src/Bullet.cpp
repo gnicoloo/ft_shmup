@@ -1,4 +1,5 @@
 #include "Entities.hpp"
+#include "Utils.hpp"
 
 void Bullet::Update(GameState& state)
 {
@@ -9,13 +10,15 @@ void Bullet::Update(GameState& state)
 		position = position + direction;
 		clock = 0;
 	}
-	if (position.y < 1)
+	if (!InsideScreen(position))
 		to_remove = true;
 	
-	Entity* other = state.collision_map[position.x][position.y-1];
+	Vector2 nextPos = position + direction;
+	Entity* other = state.collision_map[nextPos.x][nextPos.y];
 	if (other == nullptr)
 		return;
 
+	if (target == Target::Enemy)
 	if (BaseEnemy *enemy = dynamic_cast<BaseEnemy*>(other))
 	{
 		enemy->Destroy(state);

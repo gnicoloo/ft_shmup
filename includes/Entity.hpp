@@ -5,8 +5,9 @@
 #include "Data_Structs.hpp"
 #include "curses.h"
 #include <string.h>
+#include <cstdlib>
 
-#define SECONDS(clock) clock / 1000000000.0f
+#define SECONDS(clock) (clock / 1000000000.0f)
 
 class Entity : public Updatable
 {
@@ -14,10 +15,11 @@ class Entity : public Updatable
 		Vector2 position;
 		Rect bounding_box;
 		char *active_graphics;
-		bool to_remove = false;
-
-	public:
 		long long int clock = 0;
+		bool to_remove = false;
+		virtual bool HasCollisions() {return true;}
+	public:
+		virtual ~Entity() { free(active_graphics); }
 		Entity(Vector2 position, char *graphics);
 		void virtual Render(WINDOW* window);
 		void virtual Update(GameState& state) override;

@@ -5,7 +5,7 @@ void Player::Shoot(GameState& state)
 	Vector2 shootPosition = position;
 	shootPosition.x += strlen(active_graphics) / 2;
 	shootPosition.y -= 1;
-	state.spawn_queue.push_back(new Bullet(shootPosition, {0, -1}));
+	state.spawn_queue.push_back(new Bullet(shootPosition, {0, -1}, Bullet::Target::Enemy));
 }
 
 // 260 left

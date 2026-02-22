@@ -5,7 +5,7 @@ INCLUDES = includes/
 all: $(NAME)
 
 $(NAME):
-	g++ $(SRCS) -Iincludes -o build/$(NAME) -lncurses
+	g++ src/*.cpp -Iincludes -I/mingw64/include/ncursesw -o build/ft_shmup -lncursesw
 
 fclean:
 	@-rm -f build/*

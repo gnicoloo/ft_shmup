@@ -6,6 +6,7 @@
 #include "Settings.hpp"
 #include <chrono>
 #include <unistd.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main()
 	WINDOW *win;
 	int startx, starty, width, height;
 
+	srand(time(0));
 	initscr();
 	cbreak();
 	noecho();
@@ -40,7 +42,6 @@ int main()
 		state.deltaTime = getCurrentTime() - state.time;
 		state.time = getCurrentTime();
 		werase(win);
-		box(win, 0, 0);
 
 		state.entities.splice(state.entities.begin(), state.spawn_queue);
 		state.spawn_queue.clear();
@@ -53,6 +54,7 @@ int main()
 			entity->Update(state);
 			entity->Render(win);
 		}
+		box(win, 0, 0);
 		memset(state.collision_map, 0, sizeof(state.collision_map));
 		state.entities.remove_if([](Entity* entity) 
 		{

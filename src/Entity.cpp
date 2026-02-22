@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include "Utils.hpp"
 
 Entity::Entity(Vector2 position, char *graphics)
 {
@@ -28,6 +29,7 @@ void Entity::Update(GameState &state)
 
 void Entity::BakeCollisionMap(GameState &state)
 {
+	if (!this->HasCollisions()) return;
 	Vector2 pos = position;
 	for (size_t i = 0; i < strlen(active_graphics); i++)
 	{
@@ -35,7 +37,9 @@ void Entity::BakeCollisionMap(GameState &state)
 		{
 			i++;
 			pos.y--;
+			pos.x = position.x;
 		}
+		if (InsideScreen(pos))
 		state.collision_map[pos.x][pos.y] = this;
 		pos.x++;
 	}
@@ -58,8 +62,9 @@ Entity* Entity::GetEntityInCollisionMap(GameState &state)
 		{
 			i++;
 			pos.y--;
+			pos.x = position.x;
 		}
-		if (state.collision_map[pos.x][pos.y] != NULL)
+		if (InsideScreen(pos) && state.collision_map[pos.x][pos.y] != NULL)
 			return state.collision_map[pos.x][pos.y];
 		pos.x++;
 	}
