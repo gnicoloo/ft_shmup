@@ -3,115 +3,10 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorIcE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaIcEE8allocateERS0_m
-   fun:_ZNSt12_Vector_baseIcSaIcEE11_M_allocateEm
-   fun:_ZNSt6vectorIcSaIcEE17_M_realloc_insertIJcEEEvN9__gnu_cxx17__normal_iteratorIPcS1_EEDpOT_
-   fun:_ZNSt6vectorIcSaIcEE12emplace_backIJcEEEvDpOT_
-   fun:_ZNSt6vectorIcSaIcEE9push_backEOc
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorIcE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaIcEE8allocateERS0_m
-   fun:_ZNSt12_Vector_baseIcSaIcEE11_M_allocateEm
-   fun:_ZNSt6vectorIcSaIcEE17_M_realloc_insertIJcEEEvN9__gnu_cxx17__normal_iteratorIPcS1_EEDpOT_
-   fun:_ZNSt6vectorIcSaIcEE12emplace_backIJcEEEvDpOT_
-   fun:_ZNSt6vectorIcSaIcEE9push_backEOc
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorIcE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaIcEE8allocateERS0_m
-   fun:_ZNSt12_Vector_baseIcSaIcEE11_M_allocateEm
-   fun:_ZNSt6vectorIcSaIcEE17_M_realloc_insertIJcEEEvN9__gnu_cxx17__normal_iteratorIPcS1_EEDpOT_
-   fun:_ZNSt6vectorIcSaIcEE12emplace_backIJcEEEvDpOT_
-   fun:_ZNSt6vectorIcSaIcEE9push_backEOc
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorIcE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaIcEE8allocateERS0_m
-   fun:_ZNSt12_Vector_baseIcSaIcEE11_M_allocateEm
-   fun:_ZNSt6vectorIcSaIcEE17_M_realloc_insertIJcEEEvN9__gnu_cxx17__normal_iteratorIPcS1_EEDpOT_
-   fun:_ZNSt6vectorIcSaIcEE12emplace_backIJcEEEvDpOT_
-   fun:_ZNSt6vectorIcSaIcEE9push_backEOc
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
    fun:calloc
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorIcE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaIcEE8allocateERS0_m
-   fun:_ZNSt12_Vector_baseIcSaIcEE11_M_allocateEm
-   fun:_ZNSt12_Vector_baseIcSaIcEE17_M_create_storageEm
-   fun:_ZNSt12_Vector_baseIcSaIcEEC2EmRKS0_
-   fun:_ZNSt6vectorIcSaIcEEC2ERKS1_
-   fun:_ZSt10_ConstructISt6vectorIcSaIcEEJRKS2_EEvPT_DpOT0_
-   fun:_ZSt16__do_uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIcSaIcEES2_IS4_SaIS4_EEEEPS4_ET0_T_SC_SB_
-   fun:_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIcSaIcEES4_IS6_SaIS6_EEEEPS6_EET0_T_SE_SD_
-   fun:_ZSt18uninitialized_copyIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIcSaIcEES2_IS4_SaIS4_EEEEPS4_ET0_T_SC_SB_
-   fun:_ZSt22__uninitialized_copy_aIN9__gnu_cxx17__normal_iteratorIPKSt6vectorIcSaIcEES2_IS4_SaIS4_EEEEPS4_S4_ET0_T_SC_SB_RSaIT1_E
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:strdup
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
- 
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:strdup
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -126,7 +21,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -141,7 +35,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -156,7 +49,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -171,7 +63,34 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
    fun:main
 }
 
@@ -186,22 +105,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
- 
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:strdup
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -216,7 +119,20 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
    fun:main
 }
 
@@ -234,7 +150,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -248,7 +163,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -263,7 +177,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -279,7 +192,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -294,7 +206,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -309,7 +220,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -324,7 +234,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -339,7 +248,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -354,37 +262,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:tsearch
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:tsearch
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
  
@@ -399,7 +276,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
  
@@ -414,7 +290,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -429,7 +304,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -444,7 +318,34 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:tsearch
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+ 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:tsearch
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
    fun:main
 }
 
@@ -460,10 +361,9 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
- 
+
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -471,7 +371,6 @@
    fun:calloc
    fun:_nc_add_to_try
    fun:_nc_keypad
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -489,10 +388,9 @@
    obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
    fun:doupdate_sp
    fun:wrefresh
-   fun:_ZN3HUDC1Eiiii
    fun:main
 }
-
+ 
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -504,7 +402,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -521,9 +418,9 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
+
 
 {
    <insert_a_suppression_name_here>
@@ -540,7 +437,7 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
 }
 
 {
@@ -553,7 +450,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -569,90 +465,15 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:_ZN3HUDC1Eiiii
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorISt6vectorIcSaIcEEE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaISt6vectorIcSaIcEEEE8allocateERS3_m
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EE11_M_allocateEm
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EE17_M_realloc_insertIJS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EE12emplace_backIJS1_EEEvDpOT_
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EE9push_backEOS1_
-   fun:main
-}
- 
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorISt6vectorIcSaIcEEE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaISt6vectorIcSaIcEEEE8allocateERS3_m
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EE11_M_allocateEm
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EE17_M_realloc_insertIJS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EE12emplace_backIJS1_EEEvDpOT_
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EE9push_backEOS1_
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorISt6vectorIcSaIcEEE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaISt6vectorIcSaIcEEEE8allocateERS3_m
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EE11_M_allocateEm
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EE17_M_create_storageEm
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EEC2EmRKS3_
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EEC2ERKS3_
-   fun:_ZN6EntityC2EiiSt6vectorIS0_IcSaIcEESaIS2_EE
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorISt6vectorIcSaIcEEE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaISt6vectorIcSaIcEEEE8allocateERS3_m
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EE11_M_allocateEm
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EE17_M_create_storageEm
-   fun:_ZNSt12_Vector_baseISt6vectorIcSaIcEESaIS2_EEC2EmRKS3_
-   fun:_ZNSt6vectorIS_IcSaIcEESaIS1_EEC2ERKS3_
-   fun:_ZN6EntityC2EiiSt6vectorIS0_IcSaIcEESaIS2_EE
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:_Znwm
-   fun:_ZNSt15__new_allocatorI6EntityE8allocateEmPKv
-   fun:_ZNSt16allocator_traitsISaI6EntityEE8allocateERS1_m
-   fun:_ZNSt12_Vector_baseI6EntitySaIS0_EE11_M_allocateEm
-   fun:_ZNSt6vectorI6EntitySaIS0_EE17_M_realloc_insertIJS0_EEEvN9__gnu_cxx17__normal_iteratorIPS0_S2_EEDpOT_
-   fun:_ZNSt6vectorI6EntitySaIS0_EE12emplace_backIJS0_EEEvDpOT_
-   fun:_ZNSt6vectorI6EntitySaIS0_EE9push_backEOS0_
+   match-leak-kinds: indirect
+   fun:malloc
+   fun:_ZN6PlayerC2E7Vector2
    fun:main
 }
 
@@ -666,7 +487,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -680,7 +500,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -698,7 +517,6 @@
    obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
    fun:doupdate_sp
    fun:wrefresh
-   fun:_ZN3HUDC1Eiiii
    fun:main
 }
 
@@ -714,81 +532,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:_ZN3HUDC1Eiiii
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:doupdate_sp
-   fun:wrefresh
-   fun:_ZN3HUD6renderER9GameState
    fun:main
 }
  
@@ -797,13 +540,59 @@
    Memcheck:Leak
    match-leak-kinds: reachable
    fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:newwin_sp
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
- 
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:newwin_sp
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:newwin_sp
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -819,9 +608,9 @@
    obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
    fun:doupdate_sp
    fun:wrefresh
-   fun:_ZN3HUDC1Eiiii
+   fun:main
 }
-
+ 
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -837,20 +626,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -864,7 +639,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -878,7 +652,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -892,7 +665,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -906,7 +678,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -920,7 +691,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -934,7 +704,31 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+ 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+   fun:_nc_tiparm
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
    fun:main
 }
 
@@ -948,7 +742,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -962,21 +755,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-   fun:_nc_tiparm
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -991,7 +769,16 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:doupdate_sp
+   fun:wrefresh
    fun:main
 }
 
@@ -1008,7 +795,6 @@
    obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
    fun:doupdate_sp
    fun:wrefresh
-   fun:_ZN3HUDC1Eiiii
    fun:main
 }
  
@@ -1022,7 +808,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1033,10 +818,9 @@
    fun:calloc
    fun:doupdate_sp
    fun:wrefresh
-   fun:_ZN3HUD6renderER9GameState
    fun:main
 }
- 
+
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -1044,59 +828,6 @@
    fun:calloc
    fun:doupdate_sp
    fun:wrefresh
-   fun:_ZN3HUD6renderER9GameState
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1107,10 +838,9 @@
    fun:calloc
    fun:_nc_add_to_try
    fun:_nc_keypad
-   fun:_Z11init_screenv
    fun:main
 }
-
+ 
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -1119,10 +849,9 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
-
+ 
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -1137,7 +866,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1151,10 +879,48 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
- 
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:newwin_sp
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:newwin_sp
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:newwin_sp
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -1164,7 +930,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1182,20 +947,9 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   fun:newwin_sp
-   fun:_ZN3HUDC1Eiiii
-   fun:main
-}
-
+ 
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -1203,18 +957,6 @@
    fun:calloc
    fun:_nc_add_to_try
    fun:_nc_keypad
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:doupdate_sp
-   fun:wrefresh
-   fun:_ZN3HUD6renderER9GameState
    fun:main
 }
 
@@ -1226,7 +968,6 @@
    fun:new_prescr
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1244,7 +985,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1255,7 +995,16 @@
    fun:calloc
    fun:_nc_add_to_try
    fun:_nc_keypad
-   fun:_Z11init_screenv
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:doupdate_sp
+   fun:wrefresh
    fun:main
 }
 
@@ -1266,31 +1015,6 @@
    fun:calloc
    fun:_nc_add_to_try
    fun:_nc_keypad
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
-   fun:vw_printw
-   fun:mvwprintw
-   fun:_ZN3HUD6renderER9GameState
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:malloc
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1309,9 +1033,9 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
 }
- 
+
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
@@ -1322,7 +1046,18 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
+   fun:main
+}
+ 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses.so.6.3
+   fun:vw_printw
+   fun:mvprintw
+   fun:_Z8DrawLogoNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi
    fun:main
 }
 
@@ -1330,8 +1065,22 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    match-leak-kinds: reachable
+   fun:malloc
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
+   fun:main
+}
+ 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
    fun:calloc
    fun:newwin_sp
+   fun:newterm_sp
+   fun:newterm
+   fun:initscr
    fun:main
 }
 
@@ -1344,7 +1093,6 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }
 
@@ -1357,19 +1105,5 @@
    fun:newterm_sp
    fun:newterm
    fun:initscr
-   fun:_Z11init_screenv
-   fun:main
-}
-
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   fun:calloc
-   fun:newwin_sp
-   fun:newterm_sp
-   fun:newterm
-   fun:initscr
-   fun:_Z11init_screenv
    fun:main
 }

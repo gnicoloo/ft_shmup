@@ -32,4 +32,11 @@ inline void ClampScreen(Vector2& pos, char *graphics)
 		pos.y = 1;
 }
 
+inline void exit_cleanup(WINDOW* gameWin, WINDOW* hudWin)
+{
+    delwin(gameWin);
+    delwin(hudWin);
+    endwin();
+}
+
 #endif

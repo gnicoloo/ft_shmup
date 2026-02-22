@@ -113,9 +113,6 @@ int main()
 		wrefresh(win);
 		wrefresh(hud);
 	}
-
-	delwin(win);
-	delwin(hud);
-	endwin();
+	exit_cleanup(win, hud);
 	return 0;
 }
