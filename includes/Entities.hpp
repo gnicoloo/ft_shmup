@@ -38,14 +38,24 @@ class Player : public Living
 	}
 };
 
-class BaseEnemy : public Living
+class BaseEnemy : public Enemy
 {
 	private:
 	long long shootCooldown = 0;
 	public:
-	BaseEnemy(Vector2 position) : Living(position, strdup(BASE_ENEMY_SPRITE)) {this->health = 3; shootCooldown = RandomBetween(0,INITIAL_SHOOT_COOLDOWN);}
+	BaseEnemy(Vector2 position) : Enemy(position, strdup(BASE_ENEMY_SPRITE)) {this->health = 1; shootCooldown = RandomBetween(0,INITIAL_SHOOT_COOLDOWN);}
 	void Update(GameState& state) override;
-	void Destroy(GameState& state);
+	void Destroy(GameState& state) override;
+};
+
+class Mario : public Enemy
+{
+	private:
+	int direction = 1;
+	public:
+	Mario(Vector2 position, int direction) : Enemy(position, strdup(MARIO)) {this->health = 1; this->direction = direction;}
+	void Update(GameState& state) override;
+	void Destroy(GameState& state) override;
 };
 
 class Bullet : public Entity
@@ -89,12 +99,12 @@ class Particle : public Entity
 		active_graphics = NULL;
 		free(frames);
 	}
-	explicit Particle(Vector2 position, Vector2f initial_velocity) : Entity(position, nullptr)
+	explicit Particle(Vector2 position, Vector2f initial_velocity, char *animation) : Entity(position, nullptr)
 	{
 		this->velocity = initial_velocity;
 		this->precise_position = position;
 		this->frames = (char*)malloc(sizeof(char) * 16);
-		memmove(this->frames, PARTICLE_ANIMATION, 16);
+		memmove(this->frames, animation, 16);
 		this->active_graphics = frames;
 		initial_offset = PARTICLE_RANDOM_OFFSET ? RandomBetween(0, 8) : 0;
 	}
@@ -112,5 +122,18 @@ class Chest : public Entity
 	explicit Chest(Vector2 position) : Entity(position, strdup(CHEST_SPRITE)) {}
 	void Update(GameState& state) override;
 };
+
+class Star : public Entity
+{
+	private:
+
+	protected:
+		bool HasCollisions() override {return false;}
+
+	public:
+	explicit Star(Vector2 position) : Entity(position, strdup(STAR_SPRITE)) {}
+	void Update(GameState& state) override;
+};
+
 
 #endif

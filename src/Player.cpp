@@ -25,8 +25,8 @@ void Player::Update(GameState& state)
 	{
 		//case 259: this->position.y -= 1; break;
 		//case 258: this->position.y += 1; break;
-		case 261: this->position.x += 1; break;
-		case 260: this->position.x -= 1; break;
+		case 261: this->position.x += PLAYER_SPEED; break;
+		case 260: this->position.x -= PLAYER_SPEED; break;
 		case ' ': Shoot(state); break;
 		default: break;
 	}

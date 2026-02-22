@@ -39,4 +39,11 @@ class Living : public Entity
 	bool isDead() {return health <= 0;}
 };
 
+class Enemy : public Living
+{
+	public:
+	void virtual Destroy(GameState& state) = 0;
+	Enemy(Vector2 position, char *graphics) : Living(position, graphics) {}
+};
+
 #endif

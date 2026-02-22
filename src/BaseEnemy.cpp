@@ -7,7 +7,7 @@ void BaseEnemy::Update(GameState& state)
 	shootCooldown += state.deltaTime;
 	if (SECONDS(shootCooldown) > INITIAL_SHOOT_COOLDOWN && RandomBetween(0,1) > 0.5f)
 	{
-		state.spawn_queue.push_back(new Bullet(position, {0, 1}, Bullet::Target::Player));
+		state.spawn_queue.push_back(new Bullet(position + Vector2{1, 0}, {0, 1}, Bullet::Target::Player));
 		shootCooldown = 0;
 	}
 
@@ -23,6 +23,8 @@ void BaseEnemy::Update(GameState& state)
 		clock = 0;
 		if (!InsideScreen(position))
 			to_remove = true;
+		if (Player* player = dynamic_cast<Player*>(GetEntityInCollisionMap(state)))
+			player->Damage(3);
 	}
 }
 
@@ -33,6 +35,7 @@ void BaseEnemy::Destroy(GameState& state)
 	int particle_amount = (int)RandomBetween(PARTICLE_AMOUNT - PARTICLE_AMOUNT/2, PARTICLE_AMOUNT + PARTICLE_AMOUNT/2);
 	for (int i = 0; i < particle_amount; i++)
 	{
-		state.spawn_queue.push_back(new Particle(position + Vector2{(int)RandomBetween(0,4), (int)RandomBetween(-2,2)}, {RandomBetween(-16,16),RandomBetween(-3,-6)}));
+		char particle_animation[] = PARTICLE_ANIMATION;
+		state.spawn_queue.push_back(new Particle(position + Vector2{(int)RandomBetween(0,4), (int)RandomBetween(-2,2)}, {RandomBetween(-16,16),RandomBetween(-3,-6)}, particle_animation));
 	}
 }

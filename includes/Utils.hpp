@@ -15,6 +15,11 @@ inline float RandomBetween(float min, float max)
     return min + ((rand() % 100) / 100.0f) * (max - min); 
 }
 
+inline int RandomBetweenINT(int min, int max)
+{
+    return min + (rand() % (max - min));
+}
+
 inline void ClampScreen(Vector2& pos, char *graphics)
 {
 	if (pos.x > WINDOW_WIDTH - (int)strlen(graphics) - 1)

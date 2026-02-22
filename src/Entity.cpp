@@ -9,18 +9,26 @@ Entity::Entity(Vector2 position, char *graphics)
 
 void Entity::Render(WINDOW *window)
 {
-	if (!this->active_graphics) return;
-	char *graphics = this->active_graphics;
-	int posy = this->position.y;
-	wmove(window, this->position.y, this->position.x);
-	while (*graphics)
-	{
-		if (*graphics == '\n')
-			wmove(window, ++posy, this->position.x);
-		else
-			wprintw(window, "%c", *graphics);
-		graphics++;
-	}
+    if (!this->active_graphics) return;
+    char *graphics = this->active_graphics;
+    int posx = this->position.x;
+    int posy = this->position.y;
+    
+    while (*graphics)
+    {
+        if (*graphics == '\n')
+        {
+            posy++;
+            posx = this->position.x;
+        }
+        else 
+        {
+            if (InsideScreen({posx, posy}))
+                mvwaddch(window, posy, posx, *graphics);
+            posx++;
+        }
+        graphics++;
+    }
 }
 
 void Entity::Update(GameState &state)

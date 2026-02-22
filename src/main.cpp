@@ -105,7 +105,7 @@ int main()
 		if (state.player->GetHealth() <= 0)
 		{
 			DrawLogo("gameover.txt", LINES/2);
-			usleep(500000);
+			usleep(1000000);
 			getch();
 			break;
 		}

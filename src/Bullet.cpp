@@ -24,7 +24,7 @@ void Bullet::Update(GameState& state)
 		return;
 
 	if (target == Target::Enemy)
-	if (BaseEnemy *enemy = dynamic_cast<BaseEnemy*>(other))
+	if (Enemy *enemy = dynamic_cast<Enemy*>(other))
 	{
 		enemy->Destroy(state);
 		to_remove = true;

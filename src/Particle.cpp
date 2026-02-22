@@ -12,6 +12,12 @@ void Particle::Update(GameState& state)
     
     position = precise_position;
 
+    if (Player* player = dynamic_cast<Player*>(GetEntityInCollisionMap(state)))
+	{
+		state.score += RandomBetweenINT(1,3);
+		to_remove = true;
+	}
+
     if (!InsideScreen(position))
         to_remove = true;
 }
