@@ -13,7 +13,6 @@ class Entity : public Updatable
 {
 	protected:
 		Vector2 position;
-		Rect bounding_box;
 		char *active_graphics;
 		long long int clock = 0;
 		bool to_remove = false;
@@ -31,11 +30,12 @@ class Entity : public Updatable
 
 class Living : public Entity
 {
-	private:
+	protected:
 	int health;
 	
 	public:
 	Living(Vector2 position, char *graphics) : Entity(position, graphics) {}
+	int GetHealth() {return health;}
 	bool isDead() {return health <= 0;}
 };
 

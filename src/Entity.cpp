@@ -9,6 +9,7 @@ Entity::Entity(Vector2 position, char *graphics)
 
 void Entity::Render(WINDOW *window)
 {
+	if (!this->active_graphics) return;
 	char *graphics = this->active_graphics;
 	int posy = this->position.y;
 	wmove(window, this->position.y, this->position.x);
@@ -43,14 +44,6 @@ void Entity::BakeCollisionMap(GameState &state)
 		state.collision_map[pos.x][pos.y] = this;
 		pos.x++;
 	}
-}
-
-bool Entity::IsInsideBoundingBox(Vector2 point)
-{
-	return	point.x > bounding_box.position.x &&
-			point.x < (bounding_box.position.x + bounding_box.width) &&
-			point.y > bounding_box.position.y &&
-			point.y < (bounding_box.position.y + bounding_box.height);
 }
 
 Entity* Entity::GetEntityInCollisionMap(GameState &state)

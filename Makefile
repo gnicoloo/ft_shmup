@@ -1,16 +1,34 @@
-NAME = ft_shmup
-SRCS = src/*.cpp
-INCLUDES = includes/
+NAME = build/ft_shmup
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror
+INCLUDES = -Iincludes
+
+SRC_DIR = src
+BUILD_DIR = build
+
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
 all: $(NAME)
 
-$(NAME):
-	g++ src/*.cpp -Iincludes -I/mingw64/include/ncursesw -o build/ft_shmup -lncursesw
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) -lncurses
 
-fclean:
-	@-rm -f build/*
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-run: all
-	./run
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
-.PHONY: fclean all
+clean:
+	@-rm -f $(BUILD_DIR)/*.o
+
+fclean: clean
+	@-rm -f $(NAME)
+
+re: fclean all
+
+run: re
+	./$(NAME)
+
+.PHONY: all clean fclean re run

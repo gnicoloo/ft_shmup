@@ -14,4 +14,23 @@
 //HUD
 #define HUD_WIDTH 20
 #define HUD_HEIGHT 10
+#define LOGO_HEIGHT 0
+
+//ENEMIES
+#define INITIAL_SPAWN_TIME 3.5f
+#define INITIAL_SHOOT_COOLDOWN 3.5f
+#define INITIAL_MOVEMENT_COOLDOWN 1.0f
+#define BASE_ENEMY_SPRITE " _\n/O\\\n^ ^"
+#define ENEMY_BULLET_SPEED 0.75f
+
+//PLAYER
+#define PLAYER_INVINCIBILITY_SECONDS 1.0f
+#define PLAYER_SHOOT_COOLDOWN 1.0f
+#define PLAYER_BULLET_SPEED 2.0f
+#define PLAYER_ANIMATION ")OO[^]OO(\0)oO[^]Oo(\0)-O[^]O-(\0)-o[^]o-(\0)--[^]--("
+
+//CHESTS
+#define CHEST_SPRITE "###\n#?#\n###"
+#define CHEST_COOLDOWN 5
+#define CHEST_SPEED 0.5f
 #endif

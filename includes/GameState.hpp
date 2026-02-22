@@ -3,8 +3,10 @@
 
 #include <list>
 #include "Settings.hpp"
+#include "Data_Structs.hpp"
 
 class Entity;
+class Player;
 
 struct GameState
 {
@@ -14,11 +16,16 @@ struct GameState
 	int score;
 	int level;
 	int pressed;
+	Player* player;
 	std::list<Entity*> entities;
 	std::list<Entity*> spawn_queue;
-	Entity* collision_map[WINDOW_WIDTH][WINDOW_HEIGHT] = {0};
+	Entity* collision_map[WINDOW_WIDTH][WINDOW_HEIGHT] = {};
 
 	bool isKeyPressed(int key){return pressed==key;}
+	Entity *GetCollisionMap(Vector2 pos)
+	{
+		return collision_map[pos.x][pos.y];
+	}
 }; 
 
 #endif
