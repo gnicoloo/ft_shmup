@@ -11,4 +11,7 @@
 #define PARTICLE_AMOUNT 9
 #define PARTICLE_RANDOM_OFFSET (false)
 
+//HUD
+#define HUD_WIDTH 20
+#define HUD_HEIGHT 10
 #endif

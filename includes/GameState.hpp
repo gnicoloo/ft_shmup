@@ -8,6 +8,7 @@ class Entity;
 
 struct GameState
 {
+	long long int startTime;
 	long long int time;
 	long long int deltaTime;
 	int score;

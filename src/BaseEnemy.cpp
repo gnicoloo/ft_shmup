@@ -18,6 +18,7 @@ void BaseEnemy::Update(GameState& state)
 void BaseEnemy::Destroy(GameState& state)
 {
 	to_remove = true;
+	state.score += 10;
 	int particle_amount = (int)RandomBetween(PARTICLE_AMOUNT - PARTICLE_AMOUNT/2, PARTICLE_AMOUNT + PARTICLE_AMOUNT/2);
 	for (size_t i = 0; i < particle_amount; i++)
 	{
