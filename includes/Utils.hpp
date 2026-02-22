@@ -17,7 +17,7 @@ inline float RandomBetween(float min, float max)
 
 inline int RandomBetweenINT(int min, int max)
 {
-    return min + (rand() % (max - min));
+    return min + (rand() % (max - min+1));
 }
 
 inline void ClampScreen(Vector2& pos, char *graphics)

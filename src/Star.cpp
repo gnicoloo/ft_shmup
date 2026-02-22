@@ -12,6 +12,7 @@ void Star::Update(GameState& state)
 	if (Player* player = dynamic_cast<Player*>(GetEntityInCollisionMap(state)))
 	{
 		state.score += STAR_POINTS;
+		state.player->Heal(1);
 		to_remove = true;
 	}
 	if (!InsideScreen(position))

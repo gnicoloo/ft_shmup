@@ -32,7 +32,7 @@ void BaseEnemy::Destroy(GameState& state)
 {
 	to_remove = true;
 	state.score += 10;
-	int particle_amount = (int)RandomBetween(PARTICLE_AMOUNT - PARTICLE_AMOUNT/2, PARTICLE_AMOUNT + PARTICLE_AMOUNT/2);
+	int particle_amount = (int)RandomBetween(PARTICLE_AMOUNT - PARTICLE_AMOUNT/2, PARTICLE_AMOUNT + PARTICLE_AMOUNT/2) * (state.HasAugment("Particle Augment") ? 3 : 1);
 	for (int i = 0; i < particle_amount; i++)
 	{
 		char particle_animation[] = PARTICLE_ANIMATION;

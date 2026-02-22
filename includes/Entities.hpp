@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include <string.h>
 #include "Utils.hpp"
+#include <vector>
 
 class Player : public Living
 {
@@ -35,6 +36,10 @@ class Player : public Living
 			health-=amount;
 			invincibiltyClock= (long long)(PLAYER_INVINCIBILITY_SECONDS * 1000000000);
 		}
+	}
+	void Heal(int amount)
+	{
+		health += 1;
 	}
 };
 
@@ -113,8 +118,6 @@ class Particle : public Entity
 
 class Chest : public Entity
 {
-	private:
-
 	protected:
 		bool HasCollisions() override {return false;}
 
@@ -134,6 +137,5 @@ class Star : public Entity
 	explicit Star(Vector2 position) : Entity(position, strdup(STAR_SPRITE)) {}
 	void Update(GameState& state) override;
 };
-
 
 #endif

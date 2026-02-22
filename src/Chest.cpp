@@ -14,4 +14,18 @@ void Chest::Update(GameState& state)
 		to_remove = true;
 		return;
 	}
+	if (Player* player = dynamic_cast<Player*>(GetEntityInCollisionMap(state)))
+	{
+		to_remove = true;
+		state.chests++;
+		if (state.augments_left.size() == 0)
+		{
+			state.score += 20;
+			return;
+		}
+		int index = RandomBetweenINT(0, state.augments_left.size() - 1);
+		auto it = std::next(state.augments_left.begin(), index);
+		state.augments.push_back(*it);
+		state.augments_left.erase(it);
+	}
 }

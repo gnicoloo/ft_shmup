@@ -12,6 +12,8 @@ class EnemySpawner : public Entity
 
 class ChestSpawner : public Entity
 {
+	private:
+	int stored_score = 0;
 	protected:
 		bool HasCollisions() override {return false;}
 

@@ -6,7 +6,7 @@ void Bullet::Update(GameState& state)
 {
 	Entity::Update(state);
 
-	float speed = target == Target::Enemy ? PLAYER_BULLET_SPEED : ENEMY_BULLET_SPEED; 
+	float speed = target == Target::Enemy ? (PLAYER_BULLET_SPEED * (state.HasAugment("Shooting speed Augment") ? 2 : 1)) : ENEMY_BULLET_SPEED; 
 	if (SECONDS(clock) > (0.05f / speed))
 	{
 		position = position + direction;
