@@ -2,6 +2,8 @@
 
 class EnemySpawner : public Entity
 {
+	private:
+	float spawnCooldown = INITIAL_SPAWN_TIME;
 	protected:
 		bool HasCollisions() override {return false;}
 

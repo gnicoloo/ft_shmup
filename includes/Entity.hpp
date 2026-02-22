@@ -12,6 +12,7 @@
 class Entity : public Updatable
 {
 	protected:
+		bool is_gray = false;
 		Vector2 position;
 		char *active_graphics;
 		long long int clock = 0;

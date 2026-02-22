@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include <string.h>
 #include "Utils.hpp"
+#include <vector>
 
 class Player : public Living
 {
@@ -36,6 +37,10 @@ class Player : public Living
 			invincibiltyClock= (long long)(PLAYER_INVINCIBILITY_SECONDS * 1000000000);
 		}
 	}
+	void Heal(int amount)
+	{
+		health += amount;
+	}
 };
 
 class BaseEnemy : public Enemy
@@ -43,7 +48,7 @@ class BaseEnemy : public Enemy
 	private:
 	long long shootCooldown = 0;
 	public:
-	BaseEnemy(Vector2 position) : Enemy(position, strdup(BASE_ENEMY_SPRITE)) {this->health = 1; shootCooldown = RandomBetween(0,INITIAL_SHOOT_COOLDOWN);}
+	BaseEnemy(Vector2 position) : Enemy(position, strdup(RandomBetweenINT(0, 2) > 1 ? BASE_ENEMY_SPRITE : WIDE_ENEMY_SPRITE)) {this->health = 1; shootCooldown = RandomBetween(0,INITIAL_SHOOT_COOLDOWN);}
 	void Update(GameState& state) override;
 	void Destroy(GameState& state) override;
 };
@@ -104,6 +109,7 @@ class Particle : public Entity
 		this->velocity = initial_velocity;
 		this->precise_position = position;
 		this->frames = (char*)malloc(sizeof(char) * 16);
+		this->is_gray = true;
 		memmove(this->frames, animation, 16);
 		this->active_graphics = frames;
 		initial_offset = PARTICLE_RANDOM_OFFSET ? RandomBetween(0, 8) : 0;
@@ -113,8 +119,6 @@ class Particle : public Entity
 
 class Chest : public Entity
 {
-	private:
-
 	protected:
 		bool HasCollisions() override {return false;}
 
@@ -134,6 +138,5 @@ class Star : public Entity
 	explicit Star(Vector2 position) : Entity(position, strdup(STAR_SPRITE)) {}
 	void Update(GameState& state) override;
 };
-
 
 #endif

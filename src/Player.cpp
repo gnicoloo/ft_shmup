@@ -3,7 +3,7 @@
 void Player::Shoot(GameState& state)
 {
 	if (shootCooldown > 0) return;
-	shootCooldown = PLAYER_SHOOT_COOLDOWN * 1000000000;
+	shootCooldown = PLAYER_SHOOT_COOLDOWN * 1000000000 / (state.HasAugment("Shooting cooldown Augment") ? 2 : 1);
 	Vector2 shootPosition = position;
 	shootPosition.x += strlen(active_graphics) / 2;
 	shootPosition.y -= 1;

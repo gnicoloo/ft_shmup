@@ -17,7 +17,7 @@ inline float RandomBetween(float min, float max)
 
 inline int RandomBetweenINT(int min, int max)
 {
-    return min + (rand() % (max - min));
+    return min + (rand() % (max - min+1));
 }
 
 inline void ClampScreen(Vector2& pos, char *graphics)
@@ -30,13 +30,6 @@ inline void ClampScreen(Vector2& pos, char *graphics)
 		pos.y = WINDOW_HEIGHT;
 	if (pos.y < 1)
 		pos.y = 1;
-}
-
-inline void exit_cleanup(WINDOW* gameWin, WINDOW* hudWin)
-{
-    delwin(gameWin);
-    delwin(hudWin);
-    endwin();
 }
 
 #endif

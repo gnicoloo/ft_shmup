@@ -16,6 +16,8 @@
 #define HUD_WIDTH 20
 #define HUD_HEIGHT 10
 #define LOGO_HEIGHT 0
+#define UPGRADES_WIDTH 30
+#define UPGRADES_HEIGHT 30
 
 //ENEMIES
 #define INITIAL_SPAWN_TIME 3.5f
@@ -40,8 +42,12 @@
 #define PLAYER_ANIMATION ")OO[^]OO(\0)oO[^]Oo(\0)-O[^]O-(\0)-o[^]o-(\0)--[^]--("
 
 //CHESTS
-#define CHEST_SPRITE "###\n#?#\n###"
-#define CHEST_COOLDOWN 15
+#define CHEST_SPRITE "+=+\n|?|\n+=+"
+#define CHEST_COOLDOWN 30
 #define CHEST_SPEED 0.5f
+
+//BACKGROUND
+#define BACKGROUND (false)
+#define BACKGROUND_SCROLL_SPEED 1.0f
 
 #endif

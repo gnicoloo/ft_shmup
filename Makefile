@@ -28,15 +28,7 @@ fclean: clean
 
 re: fclean all
 
-val:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=$(CURDIR)/supp_extra.supp ./$(NAME)
-
-val-gen:
-	valgrind --leak-check=full --show-leak-kinds=all \
-	--track-origins=yes --gen-suppressions=all \
-	--log-file=valgrind_output.txt ./$(NAME)
-
 run: re
 	./$(NAME)
 
-.PHONY: all clean fclean re run  val val-gen
+.PHONY: all clean fclean re run

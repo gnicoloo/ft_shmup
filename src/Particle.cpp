@@ -14,7 +14,8 @@ void Particle::Update(GameState& state)
 
     if (Player* player = dynamic_cast<Player*>(GetEntityInCollisionMap(state)))
 	{
-		state.score += RandomBetweenINT(1,3);
+		state.score += RandomBetweenINT(1,3) * (state.HasAugment("Particle Score Augment") ? 2 : 1);
+		state.shards_collected++;
 		to_remove = true;
 	}
 
