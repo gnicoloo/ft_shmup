@@ -46,4 +46,8 @@
 #define CHEST_COOLDOWN 30
 #define CHEST_SPEED 0.5f
 
+//BACKGROUND
+#define BACKGROUND (false)
+#define BACKGROUND_SCROLL_SPEED 1.0f
+
 #endif

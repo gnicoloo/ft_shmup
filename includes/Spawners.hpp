@@ -2,6 +2,8 @@
 
 class EnemySpawner : public Entity
 {
+	private:
+	float spawnCooldown = INITIAL_SPAWN_TIME;
 	protected:
 		bool HasCollisions() override {return false;}
 
@@ -12,8 +14,6 @@ class EnemySpawner : public Entity
 
 class ChestSpawner : public Entity
 {
-	private:
-	int stored_score = 0;
 	protected:
 		bool HasCollisions() override {return false;}
 

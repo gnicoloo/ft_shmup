@@ -29,6 +29,7 @@ struct GameState
 	{
 		augments_left = {
 			"Particle Augment",
+			"Particle Score Augment",
 			"Shooting speed Augment",
 			"Shooting cooldown Augment"
 		};

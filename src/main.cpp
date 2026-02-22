@@ -36,17 +36,56 @@ void DrawLogo(std::string path, int start_y)
     refresh();
 }
 
+void RenderBackground(WINDOW* win, GameState& state)
+{
+	if (!BACKGROUND) return;
+	static char background[WINDOW_WIDTH][WINDOW_HEIGHT] = {};
+	static int star_offset = 0;
+	static long long clock = 0;
+	static bool initialized = false;
+
+	clock += state.deltaTime;
+	if (!initialized) {
+		const char star_types[] = {'+', '*', '.', ','};
+		for (int x = 0; x < WINDOW_WIDTH; ++x) {
+			for (int y = 0; y < WINDOW_HEIGHT; ++y) {
+				int r = rand() % 80;
+				if (r < 4) {
+					background[x][y] = star_types[r];
+				} else {
+					background[x][y] = ' ';
+				}
+			}
+		}
+		initialized = true;
+	}
+
+	if (SECONDS(clock) > 0.05f / BACKGROUND_SCROLL_SPEED)
+	{
+		star_offset = (star_offset - 1 + WINDOW_HEIGHT) % WINDOW_HEIGHT;
+		clock = 0;
+	}
+	wattron(win, COLOR_PAIR(1) | A_DIM);
+	for (int x = 0; x < WINDOW_WIDTH; ++x) {
+		for (int y = 0; y < WINDOW_HEIGHT; ++y) {
+			int star_y = (y + star_offset) % WINDOW_HEIGHT;
+			mvwaddch(win, y, x, background[x][star_y]);
+		}
+	}
+	wattroff(win, COLOR_PAIR(1) | A_DIM);
+}
+
 long long int getCurrentTime() {
     return std::chrono::steady_clock().now().time_since_epoch().count();
 }
 
 void RenderHUD(WINDOW* hud, WINDOW* upgrades, GameState& state)
 {
-	wprintw(hud, "\n Score: %4d\n", state.score);
-	wprintw(hud, " Time: %5.2f\n", SECONDS((state.time - state.startTime)));
-	wprintw(hud, " Lives: %4d", state.player->GetHealth());
-	wprintw(hud, "\n Shards: %3d\n", state.shards_collected);
-	wprintw(hud, " Chests: %3d\n", state.chests);
+	wprintw(hud, "\n Score: %11d\n", state.score);
+	wprintw(hud, " Time: %12.2f\n", SECONDS((state.time - state.startTime)));
+	wprintw(hud, "\n Shards: %10d\n", state.shards_collected);
+	wprintw(hud, " Chests: %10d\n", state.chests);
+	wprintw(hud, "\n\n Lives: %11d", state.player->GetHealth());
 
 	wprintw(upgrades, "\n AUGMENT LIST:\n");
 	wprintw(upgrades, "-----------------------------\n");
@@ -63,6 +102,11 @@ int main()
 	cbreak();
 	noecho();
 	curs_set(0);
+
+	start_color();
+	use_default_colors();
+	init_pair(1, COLOR_WHITE, -1);
+	init_pair(2, COLOR_CYAN, -1);
 	
 	win = newwin(WINDOW_HEIGHT, WINDOW_WIDTH, LINES/2 - WINDOW_HEIGHT/2, COLS/2 - WINDOW_WIDTH/2);
 	hud = newwin(HUD_HEIGHT, HUD_WIDTH, LINES/2 - WINDOW_HEIGHT/2, COLS/2 - WINDOW_WIDTH/2 - HUD_WIDTH);
@@ -94,6 +138,7 @@ int main()
 		werase(win);
 		werase(hud);
 		werase(upgrades_win);
+		RenderBackground(win, state);
 
 		state.entities.splice(state.entities.begin(), state.spawn_queue);
 		state.spawn_queue.clear();

@@ -1,6 +1,6 @@
 NAME = build/ft_shmup
 CXX = c++
-CXXFLAGS = #-Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror
 INCLUDES = -Iincludes
 
 SRC_DIR = src

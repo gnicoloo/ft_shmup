@@ -39,7 +39,7 @@ class Player : public Living
 	}
 	void Heal(int amount)
 	{
-		health += 1;
+		health += amount;
 	}
 };
 
@@ -48,7 +48,7 @@ class BaseEnemy : public Enemy
 	private:
 	long long shootCooldown = 0;
 	public:
-	BaseEnemy(Vector2 position) : Enemy(position, strdup(BASE_ENEMY_SPRITE)) {this->health = 1; shootCooldown = RandomBetween(0,INITIAL_SHOOT_COOLDOWN);}
+	BaseEnemy(Vector2 position) : Enemy(position, strdup(RandomBetweenINT(0, 2) > 1 ? BASE_ENEMY_SPRITE : WIDE_ENEMY_SPRITE)) {this->health = 1; shootCooldown = RandomBetween(0,INITIAL_SHOOT_COOLDOWN);}
 	void Update(GameState& state) override;
 	void Destroy(GameState& state) override;
 };
@@ -109,6 +109,7 @@ class Particle : public Entity
 		this->velocity = initial_velocity;
 		this->precise_position = position;
 		this->frames = (char*)malloc(sizeof(char) * 16);
+		this->is_gray = true;
 		memmove(this->frames, animation, 16);
 		this->active_graphics = frames;
 		initial_offset = PARTICLE_RANDOM_OFFSET ? RandomBetween(0, 8) : 0;

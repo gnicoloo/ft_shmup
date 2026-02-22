@@ -10,6 +10,8 @@ Entity::Entity(Vector2 position, char *graphics)
 void Entity::Render(WINDOW *window)
 {
     if (!this->active_graphics) return;
+	if (is_gray)
+		wattron(window, COLOR_PAIR(2) | A_BOLD);
     char *graphics = this->active_graphics;
     int posx = this->position.x;
     int posy = this->position.y;
@@ -29,6 +31,8 @@ void Entity::Render(WINDOW *window)
         }
         graphics++;
     }
+	if (is_gray)
+		wattroff(window, COLOR_PAIR(2) | A_BOLD);
 }
 
 void Entity::Update(GameState &state)

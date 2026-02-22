@@ -6,7 +6,7 @@ void EnemySpawner::Update(GameState &state)
 {
 	Entity::Update(state);
 
-	if (SECONDS(clock) > INITIAL_SPAWN_TIME)
+	if (SECONDS(clock) > spawnCooldown)
 	{
 		clock = 0;
 
@@ -19,6 +19,9 @@ void EnemySpawner::Update(GameState &state)
 			return;
 		}
 		state.spawn_queue.push_back(new BaseEnemy({(int)RandomBetween(2, WINDOW_WIDTH-2), 0}));
+		spawnCooldown -= 0.05f;
+		if (spawnCooldown < 0.3f)
+			spawnCooldown = 0.3f;
 	}
 }
 
